@@ -1,0 +1,28 @@
+{
+  "name": "poc-llm",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.18.3",
+  "scripts": {
+    "dev": "next dev frontend",
+    "dev:frontend": "next dev frontend",
+    "dev:backend": "python backend/main.py",
+    "build": "next build frontend",
+    "start": "next start frontend",
+    "lint": "eslint frontend"
+  },
+  "dependencies": {
+    "marked": "18.0.14",
+    "next": "16.3.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "typescript": "^5"
+  }
+}

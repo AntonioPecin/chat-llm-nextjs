@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "LLM (API compatível com OpenAI)",
+    "description": "API Ollama no padrão OpenAI. Auth Bearer herdada da collection. Preencha a variável apiKey (Collection > Variables) — e apague antes de exportar/compartilhar.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{apiKey}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://seu-servidor-llm.exemplo/v1" },
+    { "key": "apiKey", "value": "" },
+    { "key": "chatModel", "value": "qwen3.8:27b" },
+    { "key": "embedModel", "value": "qwen3-embedding:8b" },
+    { "key": "pocUrl", "value": "http://localhost:3000" }
+  ],
+  "item": [
+    {
+      "name": "Listar modelos",
+      "request": { "method": "GET", "url": "{{baseUrl}}/models" }
+    },
+    {
+      "name": "Chat - qwen3.8:27b",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/chat/completions",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"{{chatModel}}\",\n  \"messages\": [\n    { \"role\": \"system\", \"content\": \"Você é um assistente útil. Responda em português.\" },\n    { \"role\": \"user\", \"content\": \"Explique o que é RAG em 3 frases.\" }\n  ],\n  \"temperature\": 0.7,\n  \"stream\": false\n}"
+        }
+      }
+    },
+    {
+      "name": "Chat - streaming (SSE)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/chat/completions",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"{{chatModel}}\",\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"Conte até 10.\" }\n  ],\n  \"stream\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Chat - gpt-oss:20b",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/chat/completions",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"gpt-oss:20b\",\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"Olá! Quem é você?\" }\n  ],\n  \"stream\": false\n}"
+        }
+      }
+    },
+    {
+      "name": "Chat - nemotron-cascade-2",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/chat/completions",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"nemotron-cascade-2:latest\",\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"Olá! Quem é você?\" }\n  ],\n  \"stream\": false\n}"
+        }
+      }
+    },
+    {
+      "name": "Embeddings - qwen3-embedding:8b",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/embeddings",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"{{embedModel}}\",\n  \"input\": [\n    \"Como agendar consulta no SUS?\",\n    \"Horário de funcionamento do posto de saúde\"\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "POC local — /api/chat",
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{pocUrl}}/api/chat",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"Olá! Responda em uma frase.\" }\n  ]\n}"
+        }
+      }
+    }
+  ]
+}

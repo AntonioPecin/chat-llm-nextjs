@@ -1,0 +1,27 @@
+[
+  {
+    "id": "agendamento-consulta",
+    "palavras_chave": ["agendar", "agendamento", "marcar consulta", "consulta presencial", "consulta online"],
+    "resposta": "Para agendamento de consultas pelo Governo de MS, o atendimento pode ser realizado online pela Carta de Serviços no Portal Oficial (https://www.ms.gov.br) ou presencialmente na unidade de saúde mais próxima com seu documento oficial e cartão do SUS."
+  },
+  {
+    "id": "horario-atendimento",
+    "palavras_chave": ["horario", "horário", "funcionamento", "que horas abre", "atendimento presencial"],
+    "resposta": "O atendimento padrão das unidades administrativas e postos de atendimento da Secretaria de Saúde funciona de segunda a sexta-feira, das 07h30 às 17h00. Unidades de pronto atendimento (UPA) funcionam 24 horas todos os dias."
+  },
+  {
+    "id": "carta-servicos",
+    "palavras_chave": ["carta de servicos", "carta de serviços", "servicos digitais", "serviços digitais"],
+    "resposta": "A Carta de Serviços ao Cidadão do Governo do Estado de Mato Grosso do Sul reúne todas as orientações sobre emissão de documentos, saúde, educação e tributos. Acesse pelo portal: https://www.ms.gov.br/servicos."
+  },
+  {
+    "id": "vacinacao",
+    "palavras_chave": ["vacina", "vacinação", "vacinas", "posto de vacina", "imunização"],
+    "resposta": "As campanhas e o calendário estadual de vacinação de MS estão disponíveis em todas as Unidades Básicas de Saúde (UBS). Apresente sua caderneta de vacinação e um documento de identificação com foto."
+  },
+  {
+    "id": "ouvidoria",
+    "palavras_chave": ["ouvidoria", "reclamacao", "reclamação", "elogio", "denuncia", "denúncia", "falar com ouvidoria"],
+    "resposta": "A Ouvidoria Geral do SUS no Estado de Mato Grosso do Sul pode ser acionada pelo Disque Saúde 136 ou pelo formulário online da Secretaria de Saúde no portal oficial de ouvidoria."
+  }
+]

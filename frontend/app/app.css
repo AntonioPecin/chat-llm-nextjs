@@ -1,0 +1,665 @@
+/* ── Design Tokens & Cores Institucionais Gov MS ────────────────── */
+:root {
+  --gov-primary: #1e3a8a;
+  --gov-primary-hover: #1d4ed8;
+  --gov-accent: #2563eb;
+  --gov-accent-light: #eff6ff;
+  --gov-badge-base: #dcfce7;
+  --gov-badge-base-text: #15803d;
+  --gov-badge-llm: #dbeafe;
+  --gov-badge-llm-text: #1e40af;
+  
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f8fafc;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #cbd5e1;
+  --border-light: #e2e8f0;
+  
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-app: #090d16;
+    --bg-surface: #111827;
+    --bg-surface-alt: #1a2236;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --border-light: #1e293b;
+    --gov-primary: #3b82f6;
+    --gov-primary-hover: #60a5fa;
+    --gov-accent-light: #172554;
+    --gov-badge-base: #064e3b;
+    --gov-badge-base-text: #86efac;
+    --gov-badge-llm: #1e3a8a;
+    --gov-badge-llm-text: #93c5fd;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ── Base ──────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: min(58rem, 100% - 2rem);
+  margin-inline: auto;
+}
+
+/* ── Cabeçalho Institucional ───────────────────────────────────── */
+.gov-header {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.gov-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0;
+}
+
+.gov-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.gov-badge {
+  background: linear-gradient(135deg, #1e3a8a 0%, #15803d 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.gov-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.gov-titles strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.gov-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.gov-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* ── Container da Aplicação do Chat ────────────────────────────── */
+.chat-page-container {
+  width: min(58rem, 100% - 2rem);
+  margin-inline: auto;
+  padding: 1.25rem 0 2rem;
+}
+
+.chat-app {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 110px);
+  overflow: hidden;
+}
+
+/* ── Barra de Ferramentas Superior ─────────────────────────────── */
+.chat-app__toolbar {
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-surface-alt);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.chat-app__model-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.toolbar-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.toolbar-select {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.toolbar-select:focus {
+  border-color: var(--gov-accent);
+}
+
+.chat-app__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stream-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.stream-toggle input {
+  cursor: pointer;
+  accent-color: var(--gov-primary);
+}
+
+.toolbar-btn {
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toolbar-btn:hover:not(:disabled) {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+/* ── Área de Mensagens ─────────────────────────────────────────── */
+.chat-app__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Card de Boas-Vindas ───────────────────────────────────────── */
+.welcome-banner {
+  margin: 1.5rem auto 2rem;
+  max-width: 44rem;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.welcome-banner__icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.welcome-banner h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.welcome-banner p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-banner__chips {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.chips-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.chips-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.chip-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip-btn:hover {
+  border-color: var(--gov-accent);
+  background: var(--gov-accent-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.chip-btn__tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--gov-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.chip-btn__text {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+/* ── Bolhas de Mensagem ────────────────────────────────────────── */
+.msg-bubble {
+  display: flex;
+  flex-direction: column;
+  max-width: 82%;
+  animation: slideUp 0.2s ease-out;
+}
+
+.msg-bubble--user {
+  align-self: flex-end;
+}
+
+.msg-bubble--assistant {
+  align-self: flex-start;
+}
+
+.msg-bubble__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  padding: 0 0.25rem;
+}
+
+.msg-bubble__author {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.author-avatar {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--border-color);
+  color: var(--text-main);
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+}
+
+.msg-bubble--user .author-avatar {
+  background: var(--gov-primary);
+  color: #fff;
+}
+
+.author-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.msg-bubble__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.msg-time {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Badges Inteligentes de Origem */
+.badge-origin {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-origin--base {
+  background: var(--gov-badge-base);
+  color: var(--gov-badge-base-text);
+  border: 1px solid rgba(22, 101, 52, 0.2);
+}
+
+.badge-origin--llm {
+  background: var(--gov-badge-llm);
+  color: var(--gov-badge-llm-text);
+  border: 1px solid rgba(30, 58, 138, 0.2);
+}
+
+.msg-bubble__body {
+  padding: 0.85rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.msg-bubble--user .msg-bubble__body {
+  background: linear-gradient(135deg, var(--gov-primary) 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-bottom-right-radius: 2px;
+  box-shadow: 0 2px 6px rgba(30, 58, 138, 0.25);
+}
+
+.msg-bubble--assistant .msg-bubble__body {
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-bottom-left-radius: 2px;
+}
+
+.msg-bubble__footer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.35rem;
+  padding: 0 0.25rem;
+}
+
+.copy-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.copy-btn:hover {
+  background: var(--bg-surface-alt);
+  color: var(--gov-primary);
+}
+
+/* Streaming em tempo real */
+.msg-bubble--streaming .msg-bubble__body {
+  border-color: var(--gov-accent);
+  box-shadow: 0 0 0 2px var(--gov-accent-light);
+}
+
+.streaming-dots span {
+  animation: blink 1.4s infinite both;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.streaming-dots span:nth-child(2) { animation-delay: 0.2s; }
+.streaming-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0% { opacity: 0.2; }
+  20% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+/* ── Card de Erro ──────────────────────────────────────────────── */
+.chat-error-card {
+  margin: 0.5rem 1.25rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #991b1b;
+  font-size: 0.88rem;
+  animation: slideUp 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .chat-error-card {
+    background: #3b0707;
+    border-color: #7f1d1d;
+    color: #fca5a5;
+  }
+}
+
+.error-content {
+  flex: 1;
+}
+
+.error-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.error-close:hover { opacity: 1; }
+
+/* ── Barra de Formulário de Entrada ────────────────────────────── */
+.chat-input-bar {
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.chat-input-bar textarea {
+  flex: 1;
+  padding: 0.75rem 0.95rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  resize: none;
+  min-height: 48px;
+  max-height: 140px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chat-input-bar textarea:focus {
+  border-color: var(--gov-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  background: var(--bg-surface);
+}
+
+.send-button {
+  background: linear-gradient(135deg, var(--gov-primary) 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.35rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
+}
+
+.send-button:hover:not(:disabled) {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
+}
+
+.send-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.send-icon {
+  font-size: 0.9rem;
+}
+
+.spinner-loader {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* ── Animações ─────────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Responsividade ────────────────────────────────────────────── */
+@media (max-width: 48rem) {
+  .chat-app {
+    height: calc(100vh - 85px);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .chat-page-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .msg-bubble {
+    max-width: 92%;
+  }
+
+  .chips-list {
+    grid-template-columns: 1fr;
+  }
+
+  .gov-titles strong {
+    font-size: 0.95rem;
+  }
+
+  .gov-sub {
+    display: none;
+  }
+}
